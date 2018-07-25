@@ -1,0 +1,115 @@
+import React from 'react';
+import {render} from 'react-dom';
+import { Grid, Row, Col } from 'react-bootstrap';
+import { Router, IndexRoute, Route, browserHistory } from 'react-router';
+
+import './css/bootstrap.min.css';
+import './css/bootstrap-theme.min.css';
+import './css/styles.css';
+
+
+class Header extends React.Component {
+    renderMenuItem(text, hasSeparator) {
+        var cssClass = hasSeparator ? "with-separator" : "";
+        return <li className={cssClass}><a href="#">{text}</a></li>;
+    }
+
+    render() {
+        return <div className="header">
+            <Row className="show-grid">
+                <Col className="logo" sm={4} xs={4}>
+                    <img src="../app/build/images/company_logo.png" style={{marginTop: 15 + "px"}}/>
+                </Col>
+                <Col className="menu" sm={5} xs={5}>
+                    <ul>
+                        {this.renderMenuItem('About Us', 1)}
+                        {this.renderMenuItem('Contact Us', 1)}
+                        {this.renderMenuItem('Find a Store', 1)}
+                        {this.renderMenuItem('Logout')}
+                    </ul>
+                </Col>
+                <Col className="search-button text-right" sm={3} xs={3}>
+                    <input type="text" placeholder="Search" value="" name="search"/>
+                </Col>
+
+                <div class="clearfix"></div>
+            </Row>
+        </div>
+    }
+}
+
+class Separator extends React.Component {
+    render() {
+        return <div className="separator"></div>
+    }
+}
+
+class Page extends React.Component {
+    render() {
+        return <div className="container">
+            <Header />
+            <Separator />
+
+            <Col sm={9}>
+                <form id="kbForm" method="POST">
+                    <div class="input-group">
+                        <div class="icon-addon addon-lg">
+                            <input type="text" placeholder="Enter a search topic" class="form-control" name="search" id="search"
+                                   value="" />
+                                <label for="search" class="fa fa-search" rel="tooltip" title="search"></label>
+                        </div>
+                        <button type="button" name="save" class="btn btn-primary mySubmit">Search</button>
+                    </div>
+                    <input type="hidden" id="category" name="category" value=""/>
+                </form>
+
+                <div class="category-list">
+                    <div class="category-filter">
+                        <img src="../app/build/images/order.png"/>
+
+                        <div class="category-name">Troubleshoot</div>
+                    </div>
+                    <div class="category-filter" data-value="Billing & Payments" data-toggle="modal" data-target="#createCaseForm">
+                        <img src="../app/build/images/billing.png"/>
+
+                        <div class="category-name">Create a case</div>
+                    </div>
+                    <div class="category-filter generic" data-value="Product Support">
+                        <img src="../app/build/images/productsupport.png"/>
+
+                        <div class="category-name">Product Support</div>
+                    </div>
+                    <div class="category-filter generic" data-value="General">
+                        <img src="../app/build/images/questionmark.png"/>
+
+                        <div class="category-name">General</div>
+                    </div>
+                </div>
+            </Col>
+            <Col sm={3}>
+                <div class="sidebar-title bg-primary">
+                    Notifications
+                </div>
+                <div class="sidebar-content">
+                    Service outage for zip code 53128
+                    <br/><br/>
+
+                </div>
+                <div class="sidebar-title bg-primary">
+                    Contact-us
+                </div>
+                <div class="contact-container">
+                    <div class="contact-row" data-toggle="modal" data-target="#submitCaseForm">
+                        <img src="../app/build/images/email.png" />
+                        <div class="to-middle">
+                            <span class="title">Ask a Question</span>
+                            <span>Submit a question to our support team</span>
+                        </div>
+                    </div>
+                </div>
+            </Col>
+        </div>;
+    }
+}
+
+render(<Page/>, document.getElementById('app'));

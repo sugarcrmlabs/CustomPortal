@@ -1,0 +1,287 @@
+.menu ul {
+    list-style: none;
+}
+
+.menu ul li {
+    color: #cccccc;
+    display: inline;
+}
+
+.menu ul li.with-separator:after {
+    content: "";
+    display: inline-block;
+    height: 15px;
+    width: 1px;
+    vertical-align: text-bottom;
+    margin: 0px 10px;
+    background: #cccccc;
+}
+
+.header {
+    padding: 25px 15px 0px 15px;
+}
+
+.separator {
+    height: 2px;
+    width: 100%;
+    background-color: #265a88;
+    margin: 25px 0px;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa {
+    font-size: 18px;
+    margin-left: 0;
+    left: 10px;
+    top: 10px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus + .fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+
+.fa.fa-search {
+    background: url('../images/search_icon.png');
+    background-size: 25px 25px;
+}
+
+#search {
+    width: 450px;
+}
+
+.mySubmit {
+    border-radius: 0px;
+    height: 46px;
+}
+
+.category-list {
+    margin-top: 25px;
+}
+
+.category-filter {
+    display: inline-block;
+    width: 115px;
+    margin-right: 25px;
+    vertical-align: top;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding-top: 10px;
+    height: 130px;
+    color: #333;
+}
+
+.category-filter:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+.category-filter:hover {
+    background-color: #F0F0F0;
+}
+
+.category-filter img {
+    height: 48px;
+}
+
+.category-name {
+    font-weight: bold;
+    min-height: 25px;
+    padding: 15px;
+}
+
+.top-5-faq {
+    padding: 3px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.sidebar-title {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.sidebar-content {
+    padding: 10px;
+}
+
+span.title {
+    display: block;
+    font-size: 18px;
+}
+
+.contact-container {
+    padding: 10px;
+}
+
+.contact-row {
+    margin-bottom: 20px;
+    color: #0f0f0f;
+    display: block;
+    cursor: pointer;
+}
+
+.contact-row:hover {
+    color: #CCCCCC;
+    text-decoration: none;
+}
+
+.contact-row div {
+    display: inline-block;
+    width: 60%;
+}
+
+.contact-row img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+}
+
+#description {
+    min-height: 100px;
+}
+
+.to-middle {
+    vertical-align: middle;
+}
+
+.row.header{
+    font-weight: bold;
+    padding: 5px;
+}
+
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+
+.left {
+    margin-right: 40px;
+}
+
+.left, .right {
+    display: inline-block;
+}
+
+.logout {
+    display: inline-block;
+}
+
+.bg-danger, .bg-success {
+    padding: 15px;
+}
+
+.contact-row .to-middle {
+    margin-left: 15px;
+}
+
+.no-margin-top {
+    margin-top: 0px;
+}
+
+.search-button input {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.steps ul {
+    margin-top: 15px;
+}
+
+.steps ul li {
+    cursor: pointer;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+.my-hidden{
+    display: none;
+}
+
+.steps .separator{
+    height: 3px;
+    margin: 10px 0px;
+}
+
+.question {
+    background-color: #F0F0EE;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+.solution {
+    background-color: #F0F0EE;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.green {
+    color: #008000;
+}
