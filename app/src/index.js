@@ -11,7 +11,7 @@ import './css/styles.css';
 Interceptor.setupInterceptors();
 
 render((
-    <BrowserRouter basename="/customPortal/public">
+    <BrowserRouter basename="/">
         <App />
     </BrowserRouter>
 ), document.getElementById('app'));

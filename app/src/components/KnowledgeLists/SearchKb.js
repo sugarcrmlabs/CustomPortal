@@ -33,7 +33,7 @@ class SearchKb extends React.Component {
     }
 
     loadRows() {
-        axios.get('../public/searchKbRows?token=' + cookies.get('loginToken')
+        axios.get('/searchKbRows?token=' + cookies.get('loginToken')
             + '&sugar_url=' + localStorage.getItem('sugar_url')
             + '&search=' + this.state.search
             + '&category=' + this.state.category

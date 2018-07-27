@@ -11,7 +11,7 @@ class TopKbRows extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('../public/topKbRows?token=' + cookies.get('loginToken') + '&sugar_url=' + localStorage.getItem('sugar_url'))
+        axios.get('/topKbRows?token=' + cookies.get('loginToken') + '&sugar_url=' + localStorage.getItem('sugar_url'))
             .then(res => {
                 this.setState({rows: res.data});
             });

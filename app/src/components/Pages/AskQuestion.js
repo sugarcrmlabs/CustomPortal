@@ -62,7 +62,7 @@ class AskQuestion extends React.Component {
         data.set('token', cookies.get('loginToken'));
 
         let that = this;
-        axios.post('../public/submit-question', data)
+        axios.post('/submit-question', data)
             .then(res => {
                 that.setState({finished: 1, status: 'success', message: 'Your questions has been submitted with success'});
             })

@@ -5,6 +5,7 @@ import Login from './Pages/Login'
 import Auth from "./Utilities/Auth"
 import AskQuestion from "./Pages/AskQuestion"
 import Troubleshoot from "./Pages/Troubleshoot"
+import NoMatch from "./Pages/NoMatch"
 
 class Main extends React.Component {
     render() {
@@ -15,6 +16,7 @@ class Main extends React.Component {
                 <PrivateRoute exact path='/troubleshoot' component={Troubleshoot}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/logout" component={Login}/>
+                <Route component={NoMatch} />
             </Switch>
         </main>
     }

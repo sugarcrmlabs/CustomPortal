@@ -8,7 +8,7 @@ const Auth = {
         return (typeof cookies.get('refreshToken') !== 'undefined');
     },
     authenticate(cb, data) {
-        axios.post('../public/login', data)
+        axios.post('/login', data)
             .then(res => {
                 cookies.set('refreshToken', res.data.refresh_token, {path: '/', maxAge: res.data.refresh_expires_in});
                 cookies.set('loginToken', res.data.access_token, {path: '/', maxAge: res.data.expires_in});
@@ -28,7 +28,7 @@ const Auth = {
     },
 
     refreshToken(originalRequest) {
-        return axios.post('../public/refresh-token', {refreshToken: cookies.get('refreshToken'), sugar_url: localStorage.getItem('sugar_url')})
+        return axios.post('/refresh-token', {refreshToken: cookies.get('refreshToken'), sugar_url: localStorage.getItem('sugar_url')})
             .then((response) => {
                 let tokenData = response.data;
 

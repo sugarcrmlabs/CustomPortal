@@ -28,14 +28,14 @@ $app->post('/login', function (Request $request, Response $response, array $args
     $loginRequest = new ZendRequest();
 
     $loginRequest->setMethod(ZendRequest::METHOD_POST);
-    $loginRequest->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11/oauth2/token');
+    $loginRequest->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11_1/oauth2/token');
     $loginRequest->setPost(new \Zend\Stdlib\Parameters($loginParams));
 
     $zendClient = new ZendClient();
 
     $loginResponse = $zendClient->send($loginRequest);
 
-    $response->getBody()->write($loginResponse->getContent());
+    $response->getBody()->write($loginResponse->getBody());
 
     return $response->withStatus($loginResponse->getStatusCode());
 });
@@ -61,7 +61,7 @@ $app->post('/refresh-token', function (Request $request, Response $response, arr
     $refreshResponse = $zendClient->send($refreshRequest);
 
 
-    $response->getBody()->write($refreshResponse->getContent());
+    $response->getBody()->write($refreshResponse->getBody());
 
     return $response->withStatus($refreshResponse->getStatusCode());
 });
@@ -85,7 +85,7 @@ $app->get('/topKbRows', function (Request $request, Response $response, array $a
 
     $filterResponse = $zendClient->send($filterRequest);
 
-    $response->getBody()->write($filterResponse->getContent());
+    $response->getBody()->write($filterResponse->getBody());
 
     return $response->withStatus($filterResponse->getStatusCode());
 });
@@ -110,7 +110,7 @@ $app->get('/searchKbRows', function (Request $request, Response $response, array
 
     $filterResponse = $zendClient->send($filterRequest);
 
-    $response->getBody()->write($filterResponse->getContent());
+    $response->getBody()->write($filterResponse->getBody());
 
     return $response->withStatus($filterResponse->getStatusCode());
 });
@@ -129,7 +129,7 @@ $app->post('/submit-question', function (Request $request, Response $response, a
 
     $createResponse = $zendClient->send($createRequest);
     
-    $response->getBody()->write($createResponse->getContent());
+    $response->getBody()->write($createResponse->getBody());
 
     return $response->withStatus($createResponse->getStatusCode());
 });
