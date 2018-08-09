@@ -115,6 +115,31 @@ $app->get('/searchKbRows', function (Request $request, Response $response, array
     return $response->withStatus($filterResponse->getStatusCode());
 });
 
+$app->get('/getTickets', function (Request $request, Response $response, array $args) {
+    $params = $request->getParams();
+
+    $args = array(
+        'search' => $params['search'],
+        'category' => $params['category'],
+    );
+
+    $filterRequest = new ZendRequest();
+
+
+    $filterRequest->setMethod(ZendRequest::METHOD_GET);
+    $filterRequest->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11/getTickets');
+    $filterRequest->setQuery(new \Zend\Stdlib\Parameters($args));
+    $filterRequest->setHeaders((new \Zend\Http\Headers())->addHeaders(array('OAuth-Token' => $params['token'])));
+
+    $zendClient = new ZendClient();
+
+    $filterResponse = $zendClient->send($filterRequest);
+
+    $response->getBody()->write($filterResponse->getBody());
+
+    return $response->withStatus($filterResponse->getStatusCode());
+});
+
 $app->post('/submit-question', function (Request $request, Response $response, array $args) {
     $params = $request->getParams();
 
@@ -132,6 +157,42 @@ $app->post('/submit-question', function (Request $request, Response $response, a
     $response->getBody()->write($createResponse->getBody());
 
     return $response->withStatus($createResponse->getStatusCode());
+});
+
+$app->delete('/ticket/[{id}]', function (Request $request, Response $response, array $args) {
+    $params = $request->getParams();
+
+    $deleteRequest = new ZendRequest();
+
+    $deleteRequest->setMethod(ZendRequest::METHOD_DELETE);
+    $deleteRequest->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11/deleteTicket/' . $args['id']);
+    $deleteRequest->setHeaders((new \Zend\Http\Headers())->addHeaders(array('OAuth-Token' => $params['token'])));
+
+    $zendClient = new ZendClient();
+
+    $deleteResponse = $zendClient->send($deleteRequest);
+
+    $response->getBody()->write($deleteResponse->getBody());
+
+    return $response->withStatus($deleteResponse->getStatusCode());
+});
+
+$app->get('/getTicket/[{id}]', function (Request $request, Response $response, array $args) {
+    $params = $request->getParams();
+
+    $deleteRequest = new ZendRequest();
+
+    $deleteRequest->setMethod(ZendRequest::METHOD_GET);
+    $deleteRequest->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11/getTicket/' . $args['id']);
+    $deleteRequest->setHeaders((new \Zend\Http\Headers())->addHeaders(array('OAuth-Token' => $params['token'])));
+
+    $zendClient = new ZendClient();
+
+    $deleteResponse = $zendClient->send($deleteRequest);
+
+    $response->getBody()->write($deleteResponse->getBody());
+
+    return $response->withStatus($deleteResponse->getStatusCode());
 });
 
 $app->get('/[{path:.*}]', function (Request $request, Response $response, array $args) {

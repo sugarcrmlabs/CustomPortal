@@ -1,13 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {Col} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import Auth from '../Utilities/Auth'
 
 class Sidebar extends React.Component {
     render() {
         if (Auth.isAuthenticated()) {
             return (
-                <Col sm={3}>
+                <div>
                     <div class="sidebar-title bg-primary">
                         Notifications
                     </div>
@@ -27,7 +26,7 @@ class Sidebar extends React.Component {
                             </div>
                         </Link>
                     </div>
-                </Col>
+                </div>
             );
         } else {
             return null;

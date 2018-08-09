@@ -1,6 +1,6 @@
 import React from 'react'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
 function nameFormatter(cell, row) {
     return <a href={localStorage.getItem('sugar_url') + "#KBContents/" + row.id}

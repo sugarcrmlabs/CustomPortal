@@ -2,7 +2,10 @@ import React from 'react'
 import Header from './Pages/Header'
 import Main from './Main'
 import Sidebar from './Pages/Sidebar'
-import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
+import {Col} from 'react-bootstrap'
+import {NotificationContainer} from 'react-notifications';
+
 
 class App extends React.Component {
     state = {
@@ -22,21 +25,28 @@ class App extends React.Component {
         }
     }
 
-    renderRedirect()  {
+    renderRedirect() {
         if (this.state.reload) {
-            return <Redirect to={{pathname: '/'}} />
-            }
+            return <Redirect to={{pathname: '/'}}/>
         }
+    }
 
     render() {
         return <div className="container">
             {this.renderRedirect()}
-            <Header search={this.state.search} changeSearch={this.changeSearch.bind(this)} keyPress={this.keyPress.bind(this)}/>
+            <Header search={this.state.search} changeSearch={this.changeSearch.bind(this)}
+                    keyPress={this.keyPress.bind(this)}/>
             <div className="separator"></div>
-            <Main search={this.state.search} />
-            <Sidebar />
+            <Col sm={9}>
+                <Main search={this.state.search}/>
+            </Col>
+            <Col sm={3}>
+                <Sidebar />
+            </Col>
+            <NotificationContainer/>
         </div>
     }
-};
+}
+;
 
 export default App

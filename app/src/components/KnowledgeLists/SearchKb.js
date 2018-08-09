@@ -1,10 +1,7 @@
 import React from 'react'
-import axios from 'axios'
-import Cookies from 'universal-cookie'
 import KnowledgeList from './KnowledgeList'
 import {Link} from 'react-router-dom'
-
-const cookies = new Cookies();
+import API from '../../api'
 
 class SearchKb extends React.Component {
     constructor(props) {
@@ -28,15 +25,16 @@ class SearchKb extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.search !== this.state.search) {
-            this.setState({ search: nextProps.search });
+            this.setState({search: nextProps.search});
         }
     }
 
     loadRows() {
-        axios.get('/searchKbRows?token=' + cookies.get('loginToken')
-            + '&sugar_url=' + localStorage.getItem('sugar_url')
-            + '&search=' + this.state.search
-            + '&category=' + this.state.category
+        API.get('searchKbRows',
+            {
+                search: this.state.search,
+                category: this.state.category
+            }
         ).then(res => {
             this.setState({rows: res.data, category: ''});
         });

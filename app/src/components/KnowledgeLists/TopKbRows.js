@@ -1,9 +1,6 @@
 import React from 'react'
-import axios from 'axios'
-import Cookies from 'universal-cookie';
-import KnowledgeList from './KnowledgeList';
-
-const cookies = new Cookies();
+import KnowledgeList from './KnowledgeList'
+import API from '../../api'
 
 class TopKbRows extends React.Component {
     state = {
@@ -11,7 +8,7 @@ class TopKbRows extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('/topKbRows?token=' + cookies.get('loginToken') + '&sugar_url=' + localStorage.getItem('sugar_url'))
+        API.get('topKbRows')
             .then(res => {
                 this.setState({rows: res.data});
             });

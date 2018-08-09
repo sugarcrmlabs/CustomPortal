@@ -1,20 +1,37 @@
-// A simple data API that will be used to get the data for our
-// components. On a real website, a more robust data fetching
-// solution would be more appropriate.
-const PlayerAPI = {
-  players: [
-    { number: 1, name: "Ben Blocker", position: "G" },
-    { number: 2, name: "Dave Defender", position: "D" },
-    { number: 3, name: "Sam Sweeper", position: "D" },
-    { number: 4, name: "Matt Midfielder", position: "M" },
-    { number: 5, name: "William Winger", position: "M" },
-    { number: 6, name: "Fillipe Forward", position: "F" }
-  ],
-  all: function() { return this.players},
-  get: function(id) {
-    const isPlayer = p => p.number === id
-    return this.players.find(isPlayer)
-  }
-}
+import axios from 'axios'
+import Cookies from 'universal-cookie'
 
-export default PlayerAPI
+const cookies = new Cookies();
+
+const API = {
+    get: function (route, params) {
+        var queryString = '';
+
+        if (typeof params !== 'undefined') {
+            queryString = Object.keys(params).map(function (key) {
+                return key + '=' + params[key]
+            }).join('&');
+        }
+
+        return axios.get('/' + route + '?token=' + cookies.get('loginToken')
+            + '&sugar_url=' + localStorage.getItem('sugar_url')
+            + '&' + queryString
+        )
+    },
+    post: function (route, params) {
+        params.set('sugar_url', localStorage.getItem('sugar_url'));
+        params.set('token', cookies.get('loginToken'));
+
+        return axios.post('/' + route, params);
+    },
+    delete: function (route) {
+        var params = {};
+        params.data = {};
+        params.data.sugar_url = localStorage.getItem('sugar_url');
+        params.data.token = cookies.get('loginToken');
+
+        return axios.delete('/' + route, params);
+    }
+};
+
+export default API

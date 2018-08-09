@@ -1,5 +1,4 @@
 import React from 'react'
-import {Col} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 class QuestionItem extends React.Component {
@@ -95,7 +94,7 @@ class Troubleshoot extends React.Component {
         ];
 
         return (
-            <Col sm={9}>
+            <div>
                 <h2 class="no-margin-top">Troubleshoot</h2>
                 <div id="troubleshooting">
                     <div class="steps">
@@ -112,7 +111,7 @@ class Troubleshoot extends React.Component {
                         return <QuestionItem setup={question} nextStep={this.nextStep} prevStep={this.prevStep}/>
                     }, this)}
                 </div>
-            </Col>
+            </div>
         )
     }
 }
