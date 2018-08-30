@@ -3,14 +3,14 @@ import Header from './Pages/Header'
 import Main from './Main'
 import Sidebar from './Pages/Sidebar'
 import {Redirect} from 'react-router-dom'
-import {Col} from 'react-bootstrap'
 import {NotificationContainer} from 'react-notifications';
 
 
 class App extends React.Component {
     state = {
         search: '',
-        reload: 0
+        reload: 0,
+        title: ''
     };
 
     changeSearch(e) {
@@ -25,6 +25,10 @@ class App extends React.Component {
         }
     }
 
+    setTitle(title) {
+        this.setState({title: title});
+    }
+
     renderRedirect() {
         if (this.state.reload) {
             return <Redirect to={{pathname: '/'}}/>
@@ -32,17 +36,18 @@ class App extends React.Component {
     }
 
     render() {
-        return <div className="container">
+        return <div class="content">
             {this.renderRedirect()}
-            <Header search={this.state.search} changeSearch={this.changeSearch.bind(this)}
-                    keyPress={this.keyPress.bind(this)}/>
-            <div className="separator"></div>
-            <Col sm={9}>
-                <Main search={this.state.search}/>
-            </Col>
-            <Col sm={3}>
-                <Sidebar />
-            </Col>
+            <Sidebar />
+            <section>
+                <div class="sectionHeader">
+                    <Header search={this.state.search} changeSearch={this.changeSearch.bind(this)}
+                            keyPress={this.keyPress.bind(this)} title={this.state.title}/>
+                </div>
+                <div class="sectionContent">
+                    <Main search={this.state.search} setTitle={this.setTitle.bind(this)}/>
+                </div>
+            </section>
             <NotificationContainer/>
         </div>
     }

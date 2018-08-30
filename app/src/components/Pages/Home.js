@@ -3,6 +3,10 @@ import TopKbRows from '../KnowledgeLists/TopKbRows'
 import SearchKb from '../KnowledgeLists/SearchKb'
 
 class Home extends React.Component {
+    componentDidMount() {
+        this.props.setTitle('Dashboard');
+    }
+
     render() {
         return (
             <div>

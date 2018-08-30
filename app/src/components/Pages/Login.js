@@ -1,7 +1,7 @@
 import React from 'react'
 import {Redirect} from "react-router-dom"
 import Auth from "../Utilities/Auth"
-import { FormErrors } from '../Utilities/FormErrors'
+import {FormErrors} from '../Utilities/FormErrors'
 
 class Login extends React.Component {
     state = {
@@ -37,7 +37,9 @@ class Login extends React.Component {
         const name = e.target.name;
         const value = e.target.value;
         this.setState({[name]: value},
-            () => { this.validateField(name, value) });
+            () => {
+                this.validateField(name, value)
+            });
     }
 
     validateField(fieldName, value) {
@@ -46,7 +48,7 @@ class Login extends React.Component {
         let passwordValid = this.state.passwordValid;
         let sugar_urlValid = this.state.sugar_urlValid;
 
-        switch(fieldName) {
+        switch (fieldName) {
             case 'username':
                 usernameValid = value.length > 0;
 
@@ -80,7 +82,8 @@ class Login extends React.Component {
             default:
                 break;
         }
-        this.setState({formErrors: fieldValidationErrors,
+        this.setState({
+            formErrors: fieldValidationErrors,
             usernameValid: usernameValid,
             passwordValid: passwordValid,
             sugar_urlValid: sugar_urlValid
@@ -100,27 +103,34 @@ class Login extends React.Component {
         }
 
         return (
-            <div>
-                <h2>Sign In</h2>
-                <div className={(Object.keys(this.state.formErrors).length === 0 ? 'hidden' : ' ')}>
-                    <FormErrors formErrors={this.state.formErrors} />
+            <div className="login-container">
+                <div className="float-left">
+                    <img src="../app/build/images/beach-glass.png" alt="BeachGlass" className="beach-glass" />
                 </div>
-                <div className="form-group">
-                    <label for="subject">Sugar Instance URL</label>
-                    <input type="text" id="sugar_url" className="form-control" name="sugar_url"
-                           required onChange={(event) => this.handleUserInput(event)} value={this.state.sugar_url}/>
+                <div className="col-sm-6">
+                    <h2>Sign In</h2>
+                    <div className={(Object.keys(this.state.formErrors).length === 0 ? 'hidden' : ' ')}>
+                        <FormErrors formErrors={this.state.formErrors}/>
+                    </div>
+                    <div className="form-group">
+                        <label for="subject">Sugar Instance URL</label>
+                        <input type="text" id="sugar_url" className="form-control" name="sugar_url"
+                               required onChange={(event) => this.handleUserInput(event)} value={this.state.sugar_url}/>
+                    </div>
+                    <div className="form-group">
+                        <label for="subject">Username</label>
+                        <input type="text" id="username" className="form-control" name="username"
+                               required onChange={(event) => this.handleUserInput(event)} value={this.state.username}/>
+                    </div>
+                    <div className="form-group">
+                        <label for="subject">Password</label>
+                        <input type="password" id="password" className="form-control" name="password"
+                               required onChange={(event) => this.handleUserInput(event)} value={this.state.password}/>
+                    </div>
+                    <button className="btn btn-primary" onClick={this.login} disabled={!this.state.formValid}>Log in
+                    </button>
                 </div>
-                <div className="form-group">
-                    <label for="subject">Username</label>
-                    <input type="text" id="username" className="form-control" name="username"
-                           required onChange={(event) => this.handleUserInput(event)} value={this.state.username}/>
-                </div>
-                <div className="form-group">
-                    <label for="subject">Password</label>
-                    <input type="password" id="password" className="form-control" name="password"
-                           required onChange={(event) => this.handleUserInput(event)} value={this.state.password}/>
-                </div>
-                <button className="btn btn-primary" onClick={this.login} disabled={!this.state.formValid}>Log in</button>
+                <div className="clearfix"></div>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import API from '../../../api'
 import {NotificationManager} from 'react-notifications';
@@ -34,7 +34,7 @@ class TicketsList extends React.Component {
         </div>;
     }
 
-    deleteTicket(item){
+    deleteTicket(item) {
         if (window.confirm("Are you sure you wish to delete this item?")) {
             API.delete('ticket/' + item.case_id
             ).then(res => {
@@ -48,6 +48,7 @@ class TicketsList extends React.Component {
     }
 
     componentDidMount() {
+        this.props.setTitle('Your Tickets');
         this.loadRows();
     }
 
@@ -62,14 +63,21 @@ class TicketsList extends React.Component {
         const {rows} = this.state;
 
         return (
-            <div>
-                <h2 class="no-margin-top">Your Tickets</h2>
-                <BootstrapTable data={ rows } bordered={ false } striped hover condensed scrollTop={ 'Bottom' }>
-                    <TableHeaderColumn dataField='case_name' isKey dataFormat={ this.nameFormatter }>Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField='status'>Status</TableHeaderColumn>
-                    <TableHeaderColumn dataField='priority'>Priority</TableHeaderColumn>
-                    <TableHeaderColumn dataField='priority' dataFormat={ this.actionFormatter.bind(this) }>Actions</TableHeaderColumn>
-                </BootstrapTable>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <BootstrapTable data={ rows } bordered={ false } striped hover condensed
+                                            scrollTop={ 'Bottom' }>
+                                <TableHeaderColumn dataField='case_name' isKey
+                                                   dataFormat={ this.nameFormatter }>Name</TableHeaderColumn>
+                                <TableHeaderColumn dataField='status'>Status</TableHeaderColumn>
+                                <TableHeaderColumn dataField='priority'>Priority</TableHeaderColumn>
+                                <TableHeaderColumn dataField='priority' dataFormat={ this.actionFormatter.bind(this) }>Actions</TableHeaderColumn>
+                            </BootstrapTable>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

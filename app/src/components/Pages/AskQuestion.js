@@ -50,6 +50,10 @@ class AskQuestion extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.props.setTitle('Ask a Question');
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -71,66 +75,74 @@ class AskQuestion extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <h2 class="no-margin-top">Ask a Question</h2>
-                <div>
-                    <Feedback data={this.state}/>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" aria-describedby="helpBlock"
-                               name="subject" required/>
-                        <span id="helpBlock" class="help-block">A short summary of your question</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Issue</label>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form onSubmit={this.handleSubmit}>
+                                <div>
+                                    <Feedback data={this.state}/>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" id="subject" class="form-control"
+                                               aria-describedby="helpBlock"
+                                               name="subject" required/>
+                                        <span id="helpBlock" class="help-block">A short summary of your question</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Issue</label>
                         <textarea id="description" class="form-control" aria-describedby="helpBlock"
                                   name="description" required></textarea>
-                        <span id="helpBlock" class="help-block">You can describe your case here</span>
-                    </div>
-                    <div class="form-group">
-                        <div class="dropdown left">
-                            <label for="category">Category</label>
-                            <select class="form-control" name='category' id="category_drop">
-                                <option value=""></option>
-                                <option value="Billing">Billing</option>
-                                <option value="Services">Services</option>
-                                <option value="Outages">Outages</option>
-                                <option value="Product">Product</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="dropdown right">
-                            <label for="priority">Priority</label>
-                            <select class="form-control" name='priority' id="priority">
-                                <option value="P1">High</option>
-                                <option value="P2">Medium</option>
-                                <option value="P3">Low</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" class="form-control" aria-describedby="helpBlock"
-                               name="email"/>
-                    </div>
-                    <div class="form-group">
-                        <div class="left">
-                            <label for="name">First Name</label>
-                            <input id="first_name" class="form-control" aria-describedby="helpBlock"
-                                   name="first_name"/>
-                        </div>
-                        <div class="right">
-                            <label for="name">Last Name</label>
-                            <input id="last_name" class="form-control" aria-describedby="helpBlock"
-                                   name="last_name"/>
+                                        <span id="helpBlock" class="help-block">You can describe your case here</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="dropdown left">
+                                            <label for="category">Category</label>
+                                            <select class="form-control" name='category' id="category_drop">
+                                                <option value=""></option>
+                                                <option value="Billing">Billing</option>
+                                                <option value="Services">Services</option>
+                                                <option value="Outages">Outages</option>
+                                                <option value="Product">Product</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="dropdown right">
+                                            <label for="priority">Priority</label>
+                                            <select class="form-control" name='priority' id="priority">
+                                                <option value="P1">High</option>
+                                                <option value="P2">Medium</option>
+                                                <option value="P3">Low</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" class="form-control" aria-describedby="helpBlock"
+                                               name="email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="left">
+                                            <label for="name">First Name</label>
+                                            <input id="first_name" class="form-control" aria-describedby="helpBlock"
+                                                   name="first_name"/>
+                                        </div>
+                                        <div class="right">
+                                            <label for="name">Last Name</label>
+                                            <input id="last_name" class="form-control" aria-describedby="helpBlock"
+                                                   name="last_name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <Link to="/" className="btn btn-default">Cancel</Link>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <Link to="/" className="btn btn-default">Cancel</Link>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+            </div>
         )
     }
 }

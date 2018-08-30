@@ -11,18 +11,17 @@ import TicketsEdit from "./Pages/Tickets/TicketsEdit"
 
 class Main extends React.Component {
     render() {
-        return <main>
-            <Switch>
-                <PrivateRoute exact path='/' component={Home} search={this.props.search}/>
-                <PrivateRoute exact path='/ask-question' component={AskQuestion}/>
-                <PrivateRoute exact path='/troubleshoot' component={Troubleshoot}/>
-                <PrivateRoute exact path='/tickets' component={TicketsList}/>
-                <PrivateRoute exact path='/tickets/:id' component={TicketsEdit}/>
+        return <Switch>
+                <PrivateRoute exact path='/' component={Home} search={this.props.search} setTitle={this.props.setTitle}/>
+                <PrivateRoute exact path='/ask-question' component={AskQuestion} setTitle={this.props.setTitle}/>
+                <PrivateRoute exact path='/troubleshoot' component={Troubleshoot} setTitle={this.props.setTitle}/>
+                <PrivateRoute exact path='/tickets' component={TicketsList} setTitle={this.props.setTitle}/>
+                <PrivateRoute exact path='/tickets/:id' component={TicketsEdit} setTitle={this.props.setTitle}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/logout" component={Login}/>
                 <Route component={NoMatch} />
             </Switch>
-        </main>
+
     }
 }
 

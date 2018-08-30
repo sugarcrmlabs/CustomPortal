@@ -12,8 +12,12 @@ class QuestionItem extends React.Component {
                         {settings.question}
                     </div>
                     <div class="buttons">
-                        <button type="button" class="btn btn-primary myPrimary next-step" onClick={this.props.nextStep}>Yes</button>
-                        <button type="button" class="btn btn-primary myPrimary next-step" onClick={this.props.nextStep}>No</button>
+                        <button type="button" class="btn btn-primary myPrimary next-step" onClick={this.props.nextStep}>
+                            Yes
+                        </button>
+                        <button type="button" class="btn btn-primary myPrimary next-step" onClick={this.props.nextStep}>
+                            No
+                        </button>
                         <div class="separator"></div>
                         <button type="button" class="btn btn-primary myPrimary prev-step" onClick={this.props.prevStep}>
                             Go back to previous question
@@ -45,7 +49,11 @@ class Troubleshoot extends React.Component {
         this.prevStep = this.prevStep.bind(this);
     }
 
-    findAncestor (el, cls) {
+    componentDidMount() {
+        this.props.setTitle('Troubleshoot');
+    }
+
+    findAncestor(el, cls) {
         while ((el = el.parentElement) && !el.classList.contains(cls));
         return el;
     }
@@ -94,22 +102,28 @@ class Troubleshoot extends React.Component {
         ];
 
         return (
-            <div>
-                <h2 class="no-margin-top">Troubleshoot</h2>
-                <div id="troubleshooting">
-                    <div class="steps">
-                        Select the problem that describes your situation the best:
-                        <ul>
-                            {problems.map(function (problem) {
-                                return <li>
-                                    <div class="next-step" onClick={this.nextStep}>{problem}</div>
-                                </li>;
-                            }, this)}
-                        </ul>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="troubleshooting">
+                                <div class="steps">
+                                    Select the problem that describes your situation the best:
+                                    <ul>
+                                        {problems.map(function (problem) {
+                                            return <li>
+                                                <div class="next-step" onClick={this.nextStep}>{problem}</div>
+                                            </li>;
+                                        }, this)}
+                                    </ul>
+                                </div>
+                                {questions.map(function (question) {
+                                    return <QuestionItem setup={question} nextStep={this.nextStep}
+                                                         prevStep={this.prevStep}/>
+                                }, this)}
+                            </div>
+                        </div>
                     </div>
-                    {questions.map(function (question) {
-                        return <QuestionItem setup={question} nextStep={this.nextStep} prevStep={this.prevStep}/>
-                    }, this)}
                 </div>
             </div>
         )

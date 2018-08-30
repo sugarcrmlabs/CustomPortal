@@ -15,16 +15,23 @@ class TopKbRows extends React.Component {
     }
 
     render() {
-        const { rows } = this.state;
+        const {rows} = this.state;
 
         if (this.state.rows.length) {
             return (
-                <div>
-                    <div class="top-5-faq bg-primary">
-                        Top 5 FAQ
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class ="panel-heading">
+                                <div class="panel-title">Top 5 FAQ</div>
+                            </div>
+                            <div class="panel-body">
+                                <KnowledgeList rows={rows}/>
+                            </div>
+                        </div>
                     </div>
-                    <KnowledgeList rows={rows} />
                 </div>
+
 
             );
         } else {
