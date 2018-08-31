@@ -57,7 +57,7 @@ class SearchKb extends React.Component {
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default">
-                        <div class ="panel-heading">
+                        <div class="panel-heading">
                             <div class="panel-title">Knowledgebase</div>
                         </div>
                         <div class="panel-body">
@@ -81,7 +81,7 @@ class SearchKb extends React.Component {
 
                 <div class="col-lg-5">
                     <div class="panel panel-default">
-                        <div class ="panel-heading">
+                        <div class="panel-heading">
                             <div class="panel-title">Quick Links</div>
                         </div>
                         <div class="panel-body">
@@ -108,6 +108,10 @@ class SearchKb extends React.Component {
 
                                     <div class="category-name">General</div>
                                 </div>
+                                <Link to="ask-question" className="category-filter top-margin-15">
+                                    <img src="../app/build/images/questionmark.png" alt="General"/>
+                                    <div class="category-name">Ask a Question</div>
+                                </Link>
                             </div>
                         </div>
                     </div>
