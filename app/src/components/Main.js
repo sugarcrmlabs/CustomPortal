@@ -13,7 +13,7 @@ class Main extends React.Component {
     render() {
         return <Switch>
                 <PrivateRoute exact path='/' component={Home} search={this.props.search} setTitle={this.props.setTitle}/>
-                <PrivateRoute exact path='/ask-question' component={AskQuestion} setTitle={this.props.setTitle}/>
+                <PrivateRoute exact path='/new-ticket' component={AskQuestion} setTitle={this.props.setTitle}/>
                 <PrivateRoute exact path='/troubleshoot' component={Troubleshoot} setTitle={this.props.setTitle}/>
                 <PrivateRoute exact path='/tickets' component={TicketsList} setTitle={this.props.setTitle}/>
                 <PrivateRoute exact path='/tickets/:id' component={TicketsEdit} setTitle={this.props.setTitle}/>

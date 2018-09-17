@@ -51,7 +51,7 @@ class AskQuestion extends React.Component {
     }
 
     componentDidMount() {
-        this.props.setTitle('Ask a Question');
+        this.props.setTitle('New Ticket');
     }
 
     handleSubmit(event) {

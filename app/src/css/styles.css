@@ -113,7 +113,6 @@
 }
 
 .category-list {
-    margin-top: 25px;
     text-align: center;
 }
 
@@ -129,6 +128,7 @@
     padding-top: 10px;
     height: 130px;
     color: #333;
+    margin-top: 25px;
 }
 
 .category-filter:hover {

@@ -108,9 +108,9 @@ class SearchKb extends React.Component {
 
                                     <div class="category-name">General</div>
                                 </div>
-                                <Link to="ask-question" className="category-filter top-margin-15">
-                                    <img src="../app/build/images/questionmark.png" alt="General"/>
-                                    <div class="category-name">Ask a Question</div>
+                                <Link to="new-ticket" className="category-filter">
+                                    <img src="../app/build/images/customer-service.png" alt="General"/>
+                                    <div class="category-name">New Ticket</div>
                                 </Link>
                             </div>
                         </div>
