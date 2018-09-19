@@ -195,6 +195,35 @@ $app->get('/getTicket/[{id}]', function (Request $request, Response $response, a
     return $response->withStatus($deleteResponse->getStatusCode());
 });
 
+$app->get('/getNewsFeed', function (Request $request, Response $response, array $args) {
+    $feedRequest = new ZendRequest();
+
+
+    $feedRequest->setMethod(ZendRequest::METHOD_GET);
+    $feedRequest->setUri('https://www.sugarcrm.com/blog/');
+
+    $zendClient = new ZendClient();
+
+    $feedResponse = $zendClient->send($feedRequest);
+    $titleList = [];
+
+    $dom = new DOMDocument();
+    $dom->loadHTML($feedResponse->getBody());
+
+    $xpath = new DOMXPath($dom);
+    $titleContent = $xpath->query("//h2[contains(@class, 'entry-title')]/a");
+    foreach ($titleContent as $title) {
+        $tmp = ['link' => $title->getAttribute('href'),
+                'content' => $title->nodeValue];
+
+        $titleList[] = $tmp;
+    }
+
+    $response->getBody()->write(json_encode($titleList));
+
+    return $response->withStatus($feedResponse->getStatusCode());
+});
+
 $app->get('/[{path:.*}]', function (Request $request, Response $response, array $args) {
     $response = $this->view->render($response, "index.html");
 });

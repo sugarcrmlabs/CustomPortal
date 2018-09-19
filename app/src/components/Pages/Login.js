@@ -102,6 +102,10 @@ class Login extends React.Component {
             return <Redirect to={from}/>;
         }
 
+        if (Auth.isAuthenticated()) {
+            return <Redirect to='/'/>;
+        }
+
         return (
             <div className="login-container">
                 <div className="float-left">

@@ -443,3 +443,7 @@ section .sectionContent{
 .top-margin-15 {
     margin-top: 15px;
 }
+
+ul.news-feed li {
+    margin-top: 4px;
+}

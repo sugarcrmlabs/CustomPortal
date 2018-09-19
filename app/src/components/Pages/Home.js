@@ -1,6 +1,7 @@
 import React from 'react'
 import TopKbRows from '../KnowledgeLists/TopKbRows'
 import SearchKb from '../KnowledgeLists/SearchKb'
+import Newsfeed from '../Newsfeed/Newsfeed'
 
 class Home extends React.Component {
     componentDidMount() {
@@ -11,7 +12,10 @@ class Home extends React.Component {
         return (
             <div>
                 <SearchKb search={this.props.search}/>
-                < TopKbRows />
+                <div class="row">
+                    < TopKbRows />
+                    < Newsfeed />
+                </div>
             </div>
         )
     }
