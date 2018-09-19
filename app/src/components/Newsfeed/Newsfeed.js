@@ -26,11 +26,11 @@ class Newsfeed extends React.Component {
                 <div class="col-lg-5">
                     <div class="panel panel-default">
                         <div class ="panel-heading">
-                            <div class="panel-title">News</div>
+                            <div class="panel-title">Corporate News</div>
                         </div>
                         <div class="panel-body">
                             <ul class="news-feed">
-                                {rows.map((row) => <li><a href={row.link}>{row.content}</a></li>)}
+                                {rows.map((row) => <li><a href={row.link} target="_blank">{row.content}</a></li>)}
                             </ul>
                         </div>
                     </div>
