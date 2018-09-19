@@ -9,7 +9,7 @@ class Newsfeed extends React.Component {
     };
 
     componentDidMount() {
-        if (this.state.rows === 'false') {
+        if (this.state.rows === 'false' || this.state.rows == null) {
             API.get('getNewsFeed')
                 .then(res => {
                     console.log(res);
@@ -21,7 +21,7 @@ class Newsfeed extends React.Component {
     render() {
         const {rows} = this.state;
 
-        if (this.state.rows !== 'false' && this.state.rows.length) {
+        if (this.state.rows != null && this.state.rows !== 'false' && this.state.rows.length) {
             return (
                 <div class="col-lg-5">
                     <div class="panel panel-default">
