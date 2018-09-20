@@ -447,3 +447,22 @@ section .sectionContent{
 ul.news-feed li {
     margin-top: 4px;
 }
+
+.jv-job-list {
+    color: #999;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.jv-job-list td {
+    padding: 0.35em 0;
+    vertical-align: top;
+}
+
+.jv-job-list-name {
+    width: 50%;
+}
+
+.jv-job-list-location {
+    text-align: right;
+}

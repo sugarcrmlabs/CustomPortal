@@ -224,8 +224,49 @@ $app->get('/getNewsFeed', function (Request $request, Response $response, array 
     return $response->withStatus($feedResponse->getStatusCode());
 });
 
+$app->get('/getJobs', function (Request $request, Response $response, array $args) {
+    $jobRequest = new ZendRequest();
+
+
+    $jobRequest->setMethod(ZendRequest::METHOD_GET);
+    $jobRequest->setUri('http://jobs.jobvite.com/sugarcrm/?nl=1');
+
+    $zendClient = new ZendClient();
+
+    $jobResponse = $zendClient->send($jobRequest);
+    $titleList = [];
+
+    $dom = new DOMDocument();
+    $dom->loadHTML($jobResponse->getBody());
+
+    $xpath = new DOMXPath($dom);
+    $titleContent = $xpath->query("//h3[contains(@class, 'h2')]");
+    $jobContent = $xpath->query("//table[contains(@class, 'jv-job-list')]/node()");
+    foreach ($titleContent as $key=>$title) {
+        $tmp = ['title' => $title->nodeValue,
+                'content' => innerXML($jobContent[$key])];
+
+        $titleList[] = $tmp;
+    }
+
+    $response->getBody()->write(json_encode($titleList));
+
+    return $response->withStatus($jobResponse->getStatusCode());
+});
+
 $app->get('/[{path:.*}]', function (Request $request, Response $response, array $args) {
     $response = $this->view->render($response, "index.html");
 });
 
 $app->run();
+
+function innerXML($node)
+{
+    $doc  = $node->ownerDocument;
+    $frag = $doc->createDocumentFragment();
+    foreach ($node->childNodes as $child)
+    {
+        $frag->appendChild($child->cloneNode(TRUE));
+    }
+    return $doc->saveXML($frag);
+}

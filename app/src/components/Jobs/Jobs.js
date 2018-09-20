@@ -1,19 +1,25 @@
 import React from 'react'
 import API from '../../api'
 
-class Newsfeed extends React.Component {
+class Jobs extends React.Component {
     state = {
-        rows: JSON.parse(localStorage.getItem('news_feed'))
+        rows: JSON.parse(localStorage.getItem('jobs'))
     };
 
     componentDidMount() {
         if (this.state.rows === false || this.state.rows == null) {
-            API.get('getNewsFeed')
+            API.get('getJobs')
                 .then(res => {
-                    localStorage.setItem('news_feed', JSON.stringify(res.data));
+                    localStorage.setItem('jobs', JSON.stringify(res.data));
                     this.setState({rows: res.data});
                 });
         }
+
+        var jobs = document.querySelectorAll('.job-row a');
+        Array.prototype.forEach.call(jobs, function(job, index) {
+            job.setAttribute('target', '_blank');
+            job.href = 'http://jobs.jobvite.com' + job.getAttribute('href');
+        });
     }
 
     render() {
@@ -21,15 +27,13 @@ class Newsfeed extends React.Component {
 
         if (rows != null && rows !== 'false' && rows.length) {
             return (
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class ="panel-heading">
-                            <div class="panel-title">Corporate News</div>
+                            <div class="panel-title">SugarCRM Careers</div>
                         </div>
                         <div class="panel-body">
-                            <ul class="news-feed">
-                                {rows.map((row) => <li><a href={row.link} target="_blank">{row.content}</a></li>)}
-                            </ul>
+                            {rows.map((row) => <div className="job-row"><h4>{row.title}</h4><table className="jv-job-list" dangerouslySetInnerHTML={{__html: row.content}}></table></div>)}
                         </div>
                     </div>
                 </div>
@@ -42,4 +46,4 @@ class Newsfeed extends React.Component {
     }
 }
 
-export default Newsfeed
+export default Jobs

@@ -24,6 +24,7 @@ const Auth = {
         cookies.set('refreshToken', null, {path: '/', maxAge: 0});
         cookies.set('loginToken', null, {path: '/', maxAge: 0});
         localStorage.setItem('news_feed', false);
+        localStorage.setItem('jobs', false);
 
         window.location.reload();
     },
