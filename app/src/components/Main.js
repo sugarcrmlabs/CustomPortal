@@ -8,6 +8,7 @@ import Troubleshoot from "./Pages/Troubleshoot"
 import NoMatch from "./Pages/NoMatch"
 import TicketsList from "./Pages/Tickets/TicketsList"
 import TicketsEdit from "./Pages/Tickets/TicketsEdit"
+import Billing from "./Pages/Billing"
 
 class Main extends React.Component {
     render() {
@@ -17,6 +18,7 @@ class Main extends React.Component {
                 <PrivateRoute exact path='/troubleshoot' component={Troubleshoot} setTitle={this.props.setTitle}/>
                 <PrivateRoute exact path='/tickets' component={TicketsList} setTitle={this.props.setTitle}/>
                 <PrivateRoute exact path='/tickets/:id' component={TicketsEdit} setTitle={this.props.setTitle}/>
+                <PrivateRoute exact path='/billing' component={Billing} setTitle={this.props.setTitle}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/logout" component={Login}/>
                 <Route component={NoMatch} />

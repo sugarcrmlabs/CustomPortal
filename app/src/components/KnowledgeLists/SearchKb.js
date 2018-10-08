@@ -90,12 +90,11 @@ class SearchKb extends React.Component {
                                     <img src="../app/build/images/troubleshoot.png" alt="Troubleshoot"/>
                                     <div class="category-name">Troubleshoot</div>
                                 </Link>
-                                <div class="category-filter"
-                                     onClick={() => this.handleCategoryFilter('Billing & Payments')}>
+                                <Link to="billing" className="category-filter">
                                     <img src="../app/build/images/billing.png" alt="Billing & Payments"/>
 
                                     <div class="category-name">Billing & Payments</div>
-                                </div>
+                                </Link>
                                 <div class="category-filter generic"
                                      onClick={() => this.handleCategoryFilter('Product Support')}>
                                     <img src="../app/build/images/productsupport.png" alt="Product Support"/>

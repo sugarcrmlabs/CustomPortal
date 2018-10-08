@@ -12,6 +12,7 @@ const Auth = {
             .then(res => {
                 cookies.set('refreshToken', res.data.refresh_token, {path: '/', maxAge: res.data.refresh_expires_in});
                 cookies.set('loginToken', res.data.access_token, {path: '/', maxAge: res.data.expires_in});
+                cookies.set('downloadToken', res.data.download_token, {path: '/', maxAge: res.data.expires_in});
 
                 return cb(res.data);
             })
@@ -23,6 +24,7 @@ const Auth = {
     logout() {
         cookies.set('refreshToken', null, {path: '/', maxAge: 0});
         cookies.set('loginToken', null, {path: '/', maxAge: 0});
+        cookies.set('downloadToken', null, {path: '/', maxAge: 0});
         localStorage.setItem('news_feed', false);
         localStorage.setItem('jobs', false);
 
@@ -56,6 +58,7 @@ const Auth = {
 
     saveToken(tokenData) {
         cookies.set('loginToken', tokenData.access_token, {path: '/', maxAge: tokenData.expires_in});
+        cookies.set('downloadToken', tokenData.download_token, {path: '/', maxAge: tokenData.expires_in});
         cookies.set('refreshToken', tokenData.refresh_token, {path: '/', maxAge: tokenData.refresh_expires_in});
     }
 };

@@ -18,6 +18,20 @@ const API = {
             + '&' + queryString
         )
     },
+    download: function (route, params) {
+        var queryString = '';
+
+        if (typeof params !== 'undefined') {
+            queryString = Object.keys(params).map(function (key) {
+                return key + '=' + params[key]
+            }).join('&');
+        }
+
+        window.location = '/' + route + '?token=' + cookies.get('loginToken')
+            + '&downloadToken=' + cookies.get('downloadToken')
+            + '&sugar_url=' + localStorage.getItem('sugar_url')
+            + '&' + queryString;
+    },
     post: function (route, params) {
         params.set('sugar_url', localStorage.getItem('sugar_url'));
         params.set('token', cookies.get('loginToken'));

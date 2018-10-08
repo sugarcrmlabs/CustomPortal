@@ -34,6 +34,9 @@ class Sidebar extends React.Component {
                                         <Link to='/tickets'>Tickets</Link>
                                     </li>
                                     <li class="nav-item">
+                                        <Link to='/billing'>Billing & Payments</Link>
+                                    </li>
+                                    <li class="nav-item">
                                         <LogoutButton onClick={this.handleLogoutClick}/>
                                     </li>
                                 </ul>

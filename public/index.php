@@ -22,7 +22,8 @@ $app->post('/login', function (Request $request, Response $response, array $args
         'grant_type' => 'password',
         'client_id' => 'support_portal',
         'username' => $params['username'],
-        'password' => $params['password']
+        'password' => $params['password'],
+        'is_custom_portal' => '1'
     );
 
     $loginRequest = new ZendRequest();
@@ -47,7 +48,8 @@ $app->post('/refresh-token', function (Request $request, Response $response, arr
         'platform' => 'portal',
         'grant_type' => 'refresh_token',
         'client_id' => 'support_portal',
-        'refresh_token' => $params['refreshToken']
+        'refresh_token' => $params['refreshToken'],
+        'is_custom_portal' => '1'
     );
 
     $refreshRequest = new ZendRequest();
@@ -252,6 +254,55 @@ $app->get('/getJobs', function (Request $request, Response $response, array $arg
     $response->getBody()->write(json_encode($titleList));
 
     return $response->withStatus($jobResponse->getStatusCode());
+});
+
+$app->get('/getBilling', function (Request $request, Response $response, array $args) {
+    $params = $request->getParams();
+
+    $filterRequest = new ZendRequest();
+
+    $filterRequest->setMethod(ZendRequest::METHOD_GET);
+    $filterRequest->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11/getBilling');
+    $filterRequest->setHeaders((new \Zend\Http\Headers())->addHeaders(array('OAuth-Token' => $params['token'])));
+
+    $zendClient = new ZendClient();
+
+    $filterResponse = $zendClient->send($filterRequest);
+
+    $response->getBody()->write($filterResponse->getBody());
+
+    return $response->withStatus($filterResponse->getStatusCode());
+});
+
+$app->get('/billingPdf/{quote}/{template}', function (Request $request, Response $response, array $args) {
+    $params = $request->getParams();
+
+    $aa = new ZendRequest();
+
+    $aa->setMethod(ZendRequest::METHOD_POST);
+    $aa->setUri(rtrim($params['sugar_url'], '/') . '/rest/v11_1/oauth2/bwc/login');
+    $aa->setHeaders((new \Zend\Http\Headers())->addHeaders(array('OAuth-Token' => $params['token'], 'Cookie' => 'download_token_base=' . $params['downloadToken'])));
+
+    $aaaa = new ZendClient();
+
+    $test = $aaaa->send($aa);
+
+    $pdfRequest = new ZendRequest();
+
+    $pdfRequest->setMethod(ZendRequest::METHOD_GET);
+    $pdfRequest->setUri(rtrim($params['sugar_url'], '/') . '/?action=sugarpdf&module=Quotes&sugarpdf=pdfmanager&record=' . $args['quote'] . '&pdf_template_id=' . $args['template']);
+    $pdfRequest->setHeaders((new \Zend\Http\Headers())->addHeaders(array('OAuth-Token' => $params['token'], 'Cookie' => 'download_token_base=' . $params['downloadToken'] . "; PHPSESSID=" . $test->getCookie()[0]->getValue())));
+
+    $zendClient = new ZendClient();
+
+    $pdfResponse = $zendClient->send($pdfRequest);
+
+    $response->getBody()->write($pdfResponse->getBody());
+
+    return $response
+            ->withStatus($pdfResponse->getStatusCode())
+            ->withHeader('Content-Disposition', $pdfResponse->getHeaders()->get('Content-Disposition')->getFieldValue())
+            ->withHeader('Content-Type', $pdfResponse->getHeaders()->get('Content-Type')->getFieldValue());
 });
 
 $app->get('/[{path:.*}]', function (Request $request, Response $response, array $args) {

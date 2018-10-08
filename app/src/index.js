@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 import App from './components/App';
 import Interceptor from './interceptor';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrash, faFile } from '@fortawesome/free-solid-svg-icons';
 
 import './css/bootstrap.min.css';
 import './css/bootstrap-theme.min.css';
@@ -13,7 +13,7 @@ import 'react-notifications/lib/notifications.css';
 
 Interceptor.setupInterceptors();
 
-library.add(faPen, faTrash);
+library.add(faPen, faTrash, faFile);
 
 render((
     <BrowserRouter basename="/">
